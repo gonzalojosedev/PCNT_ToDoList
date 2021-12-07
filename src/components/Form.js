@@ -3,10 +3,13 @@ import styled from '@emotion/styled';
 
 const Input = styled.input`
     border: none;
-    width:100%;
+    /* width:100%; */
     font-size:24px;
     font-weight:700;
     outline:none;
+    background-color: #E5E5E5;
+    display:flex;
+    align-self:start;
 `;
 const Button = styled.button`
     width:315px;
@@ -14,20 +17,31 @@ const Button = styled.button`
     border: none;
     box-shadow: 2px 3px 5px  #8d8d8d ;
     border-radius:50px;
-    position: absolute;
-    bottom: 5%;
+    /* position: absolute;
+    bottom: 5%; */
     background: #FFFFFF;
     font-weight:400;
     font-size:16px;
+    
+`;
+const Formu = styled.form`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    border: solid 2px red;
+    height:100%;
+
 `;
 
 const Form = () => {
     return (
         <>
-        <form>
+        <Formu>
             <Input type="text" placeholder="Escribí un item" />
+
             <Button type="submit">Agregar</Button>
-        </form>
+        </Formu>
         </>
     )
 }
