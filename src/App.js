@@ -27,6 +27,7 @@ function App() {
 
       <Header>To do list</Header>
       <Subtitle>¿Qué cosas tenés que terminar hoy?</Subtitle>
+      
     </div>
   );
 }
