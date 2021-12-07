@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+//importing components
+import Form from './components/Form';
+
 const Header = styled.h1`
     font-size: 30px;
     font-weight: 700;
@@ -27,7 +30,7 @@ function App() {
 
       <Header>To do list</Header>
       <Subtitle>¿Qué cosas tenés que terminar hoy?</Subtitle>
-      
+      <Form />
     </div>
   );
 }
