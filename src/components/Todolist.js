@@ -7,14 +7,26 @@ const Div = styled.div`
     width:315px;
     border-radius:20px;
 `;
+const ListItems = styled.div`
+    display:flex;
+    flex-direction: column;
+`;
 
+const Todolist = ({inputTodo, todos}) => {
 
-const Todolist = () => {
+    
+
     return (
         <Div>
-            <ul>
-                <p>hola</p>
-            </ul>
+            <ListItems>
+            {todos.map((inputTodo)=> 
+            <div key={inputTodo.id}>
+                <ul>
+                    {inputTodo.text}
+                </ul>
+                <button>Delete</button>
+            </div>)}
+            </ListItems>
             <select name="Todo">
                 <option value="Todos">Todos</option>
                 <option value="Realizados">Realizados</option>
