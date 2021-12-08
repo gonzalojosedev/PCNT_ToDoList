@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled';
+import Todolist from './Todolist';
 
 const Input = styled.input`
     border: none;
@@ -36,7 +37,7 @@ const Form = () => {
         <>
         <Formu>
             <Input type="text" placeholder="Escribí un item" />
-
+            <Todolist />
             <Button type="submit">Agregar</Button>
         </Formu>
         </>
