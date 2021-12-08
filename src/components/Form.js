@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 
 const Input = styled.input`
     border: none;
-    /* width:100%; */
     font-size:24px;
     font-weight:700;
     outline:none;
@@ -17,8 +16,6 @@ const Button = styled.button`
     border: none;
     box-shadow: 2px 3px 5px  #8d8d8d ;
     border-radius:50px;
-    /* position: absolute;
-    bottom: 5%; */
     background: #FFFFFF;
     font-weight:400;
     font-size:16px;
@@ -29,8 +26,8 @@ const Formu = styled.form`
     flex-direction:column;
     align-items:center;
     justify-content:space-between;
-    border: solid 2px red;
-    height:100%;
+    /* border: solid 2px red; */
+    height:75%;
 
 `;
 
