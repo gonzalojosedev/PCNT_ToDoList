@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from '@emotion/styled';
 import Todolist from './Todolist';
 
@@ -33,10 +33,26 @@ const Formu = styled.form`
 `;
 
 const Form = () => {
+
+    const [todos, setTodos] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log('escribiendo..')
+    }
+
     return (
         <>
-        <Formu>
-            <Input type="text" placeholder="Escribí un item" />
+        <Formu
+            onSubmit={handleSubmit}
+        >
+            <Input 
+                type="text" 
+                placeholder="Escribí un item"
+                value={todos}
+                onChange={ (e) => setTodos(e.target.value) }
+            />
             <Todolist />
             <Button type="submit">Agregar</Button>
         </Formu>
