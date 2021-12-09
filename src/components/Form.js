@@ -50,6 +50,21 @@ const Form = () => {
     const [error, setError] = useState(false);
     const [todos, setTodos] = useState([]);
 
+    const deleteInput = id => {
+        const updatedTodos = todos.filter(inputTodo => inputTodo.id !== id); 
+        setTodos(updatedTodos)
+    }
+    
+    const toggleComplete = id => {
+        let completeTodos = todos.map(inputTodo => {
+            if (inputTodo.id === id) {
+                inputTodo.complete = !inputTodo.complete;
+            }
+            return inputTodo;
+        });
+        setTodos(completeTodos)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if ([inputTodo].includes('')){
@@ -81,6 +96,9 @@ const Form = () => {
             <Todolist 
                 todos={todos}
                 inputTodo={inputTodo}
+                setTodos={setTodos}
+                deleteInput={deleteInput}
+                toggleComplete={toggleComplete}
             />
             
             <Button 
