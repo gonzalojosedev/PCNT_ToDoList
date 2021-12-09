@@ -24,3 +24,7 @@ code {
   height: 100%;
   padding: 20px;
 }
+.complete {
+  text-decoration: line-through;
+  opacity: 0.5;
+}

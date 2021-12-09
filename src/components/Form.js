@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from '@emotion/styled';
 import Todolist from './Todolist';
 
@@ -49,6 +49,8 @@ const Form = () => {
     const [inputTodo, setInputTodo] = useState('');
     const [error, setError] = useState(false);
     const [todos, setTodos] = useState([]);
+    const [status, setStatus] = useState("todos");
+    const [filteredTodos, setFilteredTodos] = useState([]);
 
     const deleteInput = id => {
         const updatedTodos = todos.filter(inputTodo => inputTodo.id !== id); 
@@ -80,32 +82,80 @@ const Form = () => {
         setTodos([...todos, newTodo]);
         setInputTodo('');
     }
+    
+    useEffect(() => {
+        filterHandler();
+    }, [inputTodo, status])
+
+    const filterHandler = () => {
+        switch(status) {
+            case'realizados':
+                setFilteredTodos(todos.filter(inputTodo => inputTodo.complete === true));
+            break;
+            case 'no realizados':
+                setFilteredTodos(todos.filter(inputTodo => inputTodo.complete === false));
+            break;
+            default:
+                setFilteredTodos(todos);
+                break;
+        }
+    }
 
     return (
-        <>
-        {error && <Error>Escribe una tarea</Error>}
-        <FormTodo
-            onSubmit={handleSubmit}
-        >
-            <Input 
-                type="text" 
-                placeholder="Escribí un item"
-                value={inputTodo}
-                onChange={ (e) => setInputTodo(e.target.value) }
-            />
-            <Todolist 
+        <>  
+            {todos && todos.length ?(
+            <>
+
+                {error && <Error>Escribe una tarea</Error>}
+                <FormTodo
+                onSubmit={handleSubmit}
+                >
+                <Input 
+                    type="text" 
+                    placeholder="Escribí un item"
+                    value={inputTodo}
+                    onChange={ (e) => setInputTodo(e.target.value) }
+                />
+                
+                <Todolist 
                 todos={todos}
                 inputTodo={inputTodo}
                 setTodos={setTodos}
                 deleteInput={deleteInput}
                 toggleComplete={toggleComplete}
-            />
+                setStatus={setStatus}
+                filteredTodos={filteredTodos}
+                />
             
-            <Button 
-                type="submit" 
-                active={[inputTodo].includes('')}>
-            Agregar</Button>
-        </FormTodo>
+                <Button 
+                    type="submit" 
+                    active={[inputTodo].includes('')}>
+                Agregar</Button>
+                </FormTodo>
+            </>
+        ) : (
+            <>
+                {error && <Error>Escribe una tarea</Error>}
+                <FormTodo
+                onSubmit={handleSubmit}
+                >
+                <Input 
+                    type="text" 
+                    placeholder="Escribí un item"
+                    value={inputTodo}
+                    onChange={ (e) => setInputTodo(e.target.value) }
+                />
+                
+                
+            
+                <Button 
+                    type="submit" 
+                    active={[inputTodo].includes('')}>
+                Agregar</Button>
+                </FormTodo>
+            </>
+        )}
+            
         </>
     )
 }
