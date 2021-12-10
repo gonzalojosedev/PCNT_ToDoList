@@ -48,14 +48,25 @@ const Error = styled.p`
 
 `;
 
-
 const Form = () => {
-
+    
     const [inputTodo, setInputTodo] = useState('');
     const [error, setError] = useState(false);
     const [todos, setTodos] = useState([]);
     const [status, setStatus] = useState("todos");
     const [filteredTodos, setFilteredTodos] = useState([]);
+
+    useEffect(() => {
+        const getLocalS = () => {
+            const todosLocalS = JSON.parse(localStorage.getItem('todos')) ?? [];
+            setTodos(todosLocalS);
+        }
+        getLocalS();
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify( todos ))
+    }, [todos])
         
     const deleteInput = id => {
         const updatedTodos = todos.filter(inputTodo => inputTodo.id !== id); 
@@ -129,13 +140,12 @@ const Form = () => {
                 />
                 
                 <Todolist 
-                todos={todos}
-                inputTodo={inputTodo}
                 setTodos={setTodos}
                 deleteInput={deleteInput}
                 toggleComplete={toggleComplete}
                 setStatus={setStatus}
                 filteredTodos={filteredTodos}
+                
                 />
                 </Div>
                 <Button 
