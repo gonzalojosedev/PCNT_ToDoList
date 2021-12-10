@@ -2,7 +2,18 @@ import React, {useState, useEffect} from 'react'
 import styled from '@emotion/styled';
 import Todolist from './Todolist';
 
-
+const FormTodo = styled.form`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    height:70%;
+`;
+const Div = styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+`;
 const Input = styled.input`
     border: none;
     font-size:24px;
@@ -27,14 +38,7 @@ const Button = styled.button`
     }
     
 `;
-const FormTodo = styled.form`
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:space-between;
-    /* border: solid 2px red; */
-    height:70%;
-`;
+
 const Error = styled.p`
     background-color:red;
     color:white;
@@ -42,7 +46,8 @@ const Error = styled.p`
     padding:5px;
     border-radius:20px;
 
-`
+`;
+
 
 const Form = () => {
 
@@ -111,6 +116,7 @@ const Form = () => {
                 <FormTodo
                 onSubmit={handleSubmit}
                 >
+                <Div>
                 <Input 
                     type="text" 
                     placeholder="Escribí un item"
@@ -127,7 +133,7 @@ const Form = () => {
                 setStatus={setStatus}
                 filteredTodos={filteredTodos}
                 />
-            
+                </Div>
                 <Button 
                     type="submit" 
                     active={[inputTodo].includes('')}>

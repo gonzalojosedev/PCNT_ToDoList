@@ -5,6 +5,7 @@ const Div = styled.div`
     background-color:white;
     width:315px;
     border-radius:20px;
+    margin-top: 15px;
 `;
 const ListHeader = styled.div`
     display:flex;

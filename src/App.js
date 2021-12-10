@@ -15,7 +15,7 @@ const Subtitle = styled.h3`
     font-weight:400;
 `;
 const Div = styled.div`
-  /* border: 2px solid green; */
+  
   height:100%;
 `;
 
