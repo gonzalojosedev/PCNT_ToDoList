@@ -55,12 +55,13 @@ const Button = styled.button`
     outline:none;
 `;
 
-const Todolist = ({todos, deleteInput, toggleComplete, setStatus, filteredTodos}) => {
+
+const Todolist = ({deleteInput, toggleComplete, setStatus, filteredTodos, setTodos}) => {
 
     const statusHandler = (e) =>{
         setStatus(e.target.value)
     }
-
+    
     return (
         <Div>
         <ListHeader>
