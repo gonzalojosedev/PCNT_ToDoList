@@ -57,9 +57,12 @@ const Form = () => {
     const [status, setStatus] = useState("todos");
     const [filteredTodos, setFilteredTodos] = useState([]);
 
+    
     const deleteInput = id => {
         const updatedTodos = todos.filter(inputTodo => inputTodo.id !== id); 
+        setFilteredTodos(todos)
         setTodos(updatedTodos)
+        
     }
     
     const toggleComplete = id => {
@@ -69,9 +72,9 @@ const Form = () => {
             }
             return inputTodo;
         });
+        setFilteredTodos(todos);
         setTodos(completeTodos)
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         if ([inputTodo].includes('')){
@@ -87,25 +90,27 @@ const Form = () => {
         setTodos([...todos, newTodo]);
         setInputTodo('');
     }
-    
     useEffect(() => {
-        filterHandler();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ inputTodo, status])
 
-    const filterHandler = () => {
-        switch(status) {
-            case'realizados':
-                setFilteredTodos(todos.filter(inputTodo => inputTodo.complete === true));
-            break;
-            case 'no realizados':
-                setFilteredTodos(todos.filter(inputTodo => inputTodo.complete === false));
-            break;
-            default:
-                setFilteredTodos(todos);
+        const filterHandler = () => {
+            switch(status) {
+                case'realizados':
+                    setFilteredTodos(todos.filter(inputTodo => inputTodo.complete === true));
                 break;
+                case 'no realizados':
+                    setFilteredTodos(todos.filter(inputTodo => inputTodo.complete === false));
+                break;
+                default:
+                    setFilteredTodos(todos);
+                    break;
+            }
         }
-    }
+
+        filterHandler();
+    
+    }, [inputTodo, status, todos])
+
+    
 
     return (
         <>  
