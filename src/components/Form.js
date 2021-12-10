@@ -85,7 +85,8 @@ const Form = () => {
     
     useEffect(() => {
         filterHandler();
-    }, [inputTodo, status])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ inputTodo, status])
 
     const filterHandler = () => {
         switch(status) {
