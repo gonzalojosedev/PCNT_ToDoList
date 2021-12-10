@@ -44,7 +44,7 @@ const Error = styled.p`
     color:white;
     text-align:center;
     padding:5px;
-    border-radius:20px;
+    font-weight:700;
 
 `;
 
@@ -140,11 +140,11 @@ const Form = () => {
                 />
                 
                 <Todolist 
-                setTodos={setTodos}
-                deleteInput={deleteInput}
-                toggleComplete={toggleComplete}
-                setStatus={setStatus}
-                filteredTodos={filteredTodos}
+                    setTodos={setTodos}
+                    deleteInput={deleteInput}
+                    toggleComplete={toggleComplete}
+                    setStatus={setStatus}
+                    filteredTodos={filteredTodos}
                 
                 />
                 </Div>
@@ -156,7 +156,7 @@ const Form = () => {
             </>
         ) : (
             <>
-                {error && <Error>Escribe una tarea</Error>}
+                {error && <Error>Escribí un item para poder agregarlo</Error>}
                 <FormTodo
                 onSubmit={handleSubmit}
                 >

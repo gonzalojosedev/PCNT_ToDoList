@@ -7,6 +7,7 @@ const Div = styled.div`
     width:315px;
     border-radius:20px;
     margin-top: 15px;
+    padding: 10px 5px;
 `;
 const ListHeader = styled.div`
     display:flex;
@@ -45,7 +46,7 @@ const Ul = styled.ul`
     padding: 0 0 0 20px;
 `;
 const Item = styled.p`
-    padding: 0 0 0 10px;
+    padding: 5px 0 5px 10px;
     margin: 5px;
     
     
@@ -54,6 +55,7 @@ const Button = styled.button`
     background-color: white;
     border: none;
     outline:none;
+    border-radius: 20px;
 `;
 
 const Todolist = ({deleteInput, toggleComplete, setStatus, filteredTodos, setTodos}) => {
@@ -98,9 +100,8 @@ const Todolist = ({deleteInput, toggleComplete, setStatus, filteredTodos, setTod
                 <circle cx="10" cy="10" r="9.5" stroke="#BCBCBC" />
                 </svg> 
                 }
-                {inputTodo.complete 
-                ? <Item className="complete">{inputTodo.text}</Item>
-                : <Item>{inputTodo.text}</Item> }
+                <Item className={inputTodo.complete ? "complete" : ""}>{inputTodo.text}</Item>
+                
                 
                 </Ul>
                 <Button 
