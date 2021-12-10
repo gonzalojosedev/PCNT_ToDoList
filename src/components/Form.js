@@ -1,8 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from '@emotion/styled';
 import Todolist from './Todolist';
 
-
+const FormTodo = styled.form`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    height:70%;
+`;
+const Div = styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+`;
 const Input = styled.input`
     border: none;
     font-size:24px;
@@ -27,14 +38,7 @@ const Button = styled.button`
     }
     
 `;
-const FormTodo = styled.form`
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:space-between;
-    /* border: solid 2px red; */
-    height:70%;
-`;
+
 const Error = styled.p`
     background-color:red;
     color:white;
@@ -42,13 +46,31 @@ const Error = styled.p`
     padding:5px;
     border-radius:20px;
 
-`
+`;
+
 
 const Form = () => {
 
     const [inputTodo, setInputTodo] = useState('');
     const [error, setError] = useState(false);
     const [todos, setTodos] = useState([]);
+    const [status, setStatus] = useState("todos");
+    const [filteredTodos, setFilteredTodos] = useState([]);
+
+    const deleteInput = id => {
+        const updatedTodos = todos.filter(inputTodo => inputTodo.id !== id); 
+        setTodos(updatedTodos)
+    }
+    
+    const toggleComplete = id => {
+        let completeTodos = todos.map(inputTodo => {
+            if (inputTodo.id === id) {
+                inputTodo.complete = !inputTodo.complete;
+            }
+            return inputTodo;
+        });
+        setTodos(completeTodos)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -65,29 +87,82 @@ const Form = () => {
         setTodos([...todos, newTodo]);
         setInputTodo('');
     }
+    
+    useEffect(() => {
+        filterHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ inputTodo, status])
+
+    const filterHandler = () => {
+        switch(status) {
+            case'realizados':
+                setFilteredTodos(todos.filter(inputTodo => inputTodo.complete === true));
+            break;
+            case 'no realizados':
+                setFilteredTodos(todos.filter(inputTodo => inputTodo.complete === false));
+            break;
+            default:
+                setFilteredTodos(todos);
+                break;
+        }
+    }
 
     return (
-        <>
-        {error && <Error>Escribe una tarea</Error>}
-        <FormTodo
-            onSubmit={handleSubmit}
-        >
-            <Input 
-                type="text" 
-                placeholder="Escribí un item"
-                value={inputTodo}
-                onChange={ (e) => setInputTodo(e.target.value) }
-            />
-            <Todolist 
+        <>  
+            {todos && todos.length ?(
+            <>
+
+                {error && <Error>Escribe una tarea</Error>}
+                <FormTodo
+                onSubmit={handleSubmit}
+                >
+                <Div>
+                <Input 
+                    type="text" 
+                    placeholder="Escribí un item"
+                    value={inputTodo}
+                    onChange={ (e) => setInputTodo(e.target.value) }
+                />
+                
+                <Todolist 
                 todos={todos}
                 inputTodo={inputTodo}
-            />
+                setTodos={setTodos}
+                deleteInput={deleteInput}
+                toggleComplete={toggleComplete}
+                setStatus={setStatus}
+                filteredTodos={filteredTodos}
+                />
+                </Div>
+                <Button 
+                    type="submit" 
+                    active={[inputTodo].includes('')}>
+                Agregar</Button>
+                </FormTodo>
+            </>
+        ) : (
+            <>
+                {error && <Error>Escribe una tarea</Error>}
+                <FormTodo
+                onSubmit={handleSubmit}
+                >
+                <Input 
+                    type="text" 
+                    placeholder="Escribí un item"
+                    value={inputTodo}
+                    onChange={ (e) => setInputTodo(e.target.value) }
+                />
+                
+                
             
-            <Button 
-                type="submit" 
-                active={[inputTodo].includes('')}>
-            Agregar</Button>
-        </FormTodo>
+                <Button 
+                    type="submit" 
+                    active={[inputTodo].includes('')}>
+                Agregar</Button>
+                </FormTodo>
+            </>
+        )}
+            
         </>
     )
 }
