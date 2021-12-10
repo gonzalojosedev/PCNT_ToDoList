@@ -56,8 +56,7 @@ const Form = () => {
     const [todos, setTodos] = useState([]);
     const [status, setStatus] = useState("todos");
     const [filteredTodos, setFilteredTodos] = useState([]);
-
-    
+        
     const deleteInput = id => {
         const updatedTodos = todos.filter(inputTodo => inputTodo.id !== id); 
         setFilteredTodos(todos)
