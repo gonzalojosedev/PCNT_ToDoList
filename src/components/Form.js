@@ -73,7 +73,7 @@ const Form = () => {
         setFilteredTodos(todos)
         setTodos(updatedTodos)
         
-    }
+    };
     
     const toggleComplete = id => {
         let completeTodos = todos.map(inputTodo => {
@@ -136,7 +136,7 @@ const Form = () => {
                     type="text" 
                     placeholder="Escribí un item"
                     value={inputTodo}
-                    onChange={ (e) => setInputTodo(e.target.value) }
+                    onChange={ (e) => setInputTodo(e.target.value)}
                 />
                 
                 <Todolist 
