@@ -6,12 +6,17 @@ import App from '../App';
 describe('Test App.js renders content', () => {
 
     const component = render(<App />);
+    const header = component.getByText('To do list')
+    const subtitle = component.getByText('¿Qué cosas tenés que terminar hoy?')
+
     
 
     test('Header y Subtitle', () => {
         
-        component.getByText('To do list')
-        component.getByText('¿Qué cosas tenés que terminar hoy?')
+        expect(header).toBeInTheDocument()
+        expect(subtitle).toBeInTheDocument()
+       
+
     });
 })
 

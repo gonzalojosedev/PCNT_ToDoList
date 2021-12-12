@@ -5,7 +5,7 @@ import Todolist from '../../components/Todolist';
 
 describe('<Todolist />', () => {
     
-    test('delete input', () => {
+    test('should call function mockHandlerDelete 1 time', () => {
         const inputTodo = {
             id: new Date().getTime(),
             content: 'pagar cuentas',
@@ -20,8 +20,5 @@ describe('<Todolist />', () => {
         expect(mockHandlerDelete).toHaveBeenCalledTimes(1)
         
     })
-    
-    
-
 })
 

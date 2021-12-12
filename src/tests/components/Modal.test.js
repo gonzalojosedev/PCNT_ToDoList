@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/react';
 import Modal from '../../components/Modal';
 
 describe('<Modal />', () => {
-    test('button Cancelar', () => {
+    test('should call function mockHandlerClose 1 time', () => {
 
         const mockHandlerClose = jest.fn()
 
@@ -16,11 +16,11 @@ describe('<Modal />', () => {
         expect(mockHandlerClose).toHaveBeenCalledTimes(1)
     })
 
-    test('button Nueva Lista', () => {
+    test('should call function mockHandlerReset 1 time', () => {
                 
         const mockHandlerReset = jest.fn();
 
-        const component = render(<Modal showModal={true} setTodos={mockHandlerReset} />)
+        const component = render(<Modal showModal={true}  setTodos={mockHandlerReset} />)
 
         const button2 = component.getByText('Nueva lista');
         fireEvent.click(button2);
