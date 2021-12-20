@@ -7,7 +7,7 @@ const FormTodo = styled.form`
     flex-direction:column;
     align-items:center;
     justify-content:space-between;
-    height:70%;
+    
 `;
 const Div = styled.div`
     display:flex;
@@ -22,6 +22,7 @@ const Input = styled.input`
     background-color: #E5E5E5;
     display:flex;
     align-self:start;
+    margin: 2rem 0;
 `;
 const Button = styled.button`
     width:315px;

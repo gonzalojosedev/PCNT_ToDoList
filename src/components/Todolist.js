@@ -7,6 +7,7 @@ const Div = styled.div`
     width:315px;
     border-radius:20px;
     margin-top: 15px;
+    margin-bottom: 20px;
     padding: 10px 5px;
 `;
 const ListHeader = styled.div`
